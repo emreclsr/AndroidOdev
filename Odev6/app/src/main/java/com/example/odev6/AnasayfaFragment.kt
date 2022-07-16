@@ -1,18 +1,26 @@
 package com.example.odev6
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.odev6.databinding.FragmentAnasayfaBinding
-
 
 
 class AnasayfaFragment : Fragment() {
     private lateinit var tasarim:FragmentAnasayfaBinding
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+
+        // Hide navigation bar
+        activity!!.window.decorView.systemUiVisibility = (
+                View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY)
+
+
+
         tasarim = FragmentAnasayfaBinding.inflate(inflater, container, false)
 
         tasarim.rvMain.layoutManager = StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.HORIZONTAL)
@@ -74,6 +82,8 @@ class AnasayfaFragment : Fragment() {
 
         val adapterYeni = DiziSecondaryAdapter(requireContext(), yeniDiziListesi)
         tasarim.rvYeni.adapter = adapterYeni
+
+
 
 
         return tasarim.root
